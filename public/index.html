@@ -7,13 +7,26 @@
         <button id = "lightSwitch">ON/OFF</button>
         <script>
             var ls = "OFF";
+            
+
+            var data = {ls};
+            function sendData(){
+                data = {ls};
+                fetch('/api' , {
+                    method:'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+            }
             lightSwitch = document.getElementById("lightSwitch");
             lightSwitch.addEventListener("click" , (event) => {
                 if (ls == "OFF") {ls = "ON";}
                 else if (ls == "ON") {ls = "OFF";}
                 document.getElementById("light").innerText = ls;
+                sendData();
                 event.preventDefault();
             });
+
         </script>
     </body>
 </html>
