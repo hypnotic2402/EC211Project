@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>EC211 Project</h1>
+        <div>Lights : <span id="light">OFF</span></div>
+        <button id = "lightSwitch">ON/OFF</button>
+        <script>
+            var ls = "OFF";
+            lightSwitch = document.getElementById("lightSwitch");
+            lightSwitch.addEventListener("click" , (event) => {
+                if (ls == "OFF") {ls = "ON";}
+                else if (ls == "ON") {ls = "OFF";}
+                document.getElementById("light").innerText = ls;
+                event.preventDefault();
+            });
+        </script>
+    </body>
+</html>
