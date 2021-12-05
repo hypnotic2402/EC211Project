@@ -16,6 +16,13 @@
                     method:'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(data)
+                }).then(response => {
+                    if (response){
+                        console.log(response);
+                    }else
+                    {
+                        console.log('Waiting for handshake');
+                    }
                 });
             }
             lightSwitch = document.getElementById("lightSwitch");
