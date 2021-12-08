@@ -12,9 +12,12 @@ app.use(express.static('public'));
 
 // API for client to change variables
 var lights="OFF";
+var curtain = "CLOSED";
 app.post('/api' , (req, res)=>{
     lights = req.body.ls;
+    curtain = req.body.cs;
     console.log(lights);
+    console.log(curtain);
     res.json({status: 'success'});
 });
 
@@ -23,4 +26,10 @@ app.post('/api' , (req, res)=>{
 app.get('/rasp/lights' , (req, res)=>{
     res.send(lights);
 });
+
+app.get('/rasp/curtain' , (req, res)=>{
+    res.send(curtain);
+});
+
+
 

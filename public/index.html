@@ -5,13 +5,17 @@
         <h1>EC211 Project</h1>
         <div>Lights : <span id="light">OFF</span></div>
         <button id = "lightSwitch">ON/OFF</button>
+        <br><br>
+        <div>Curtains : <span id="curtain">CLOSED</span></div>
+        <button id = "curtainSwitch">OPEN/CLOSE</button>
         <script>
             var ls = "OFF";
+            var cs = "CLOSED";
             
 
-            var data = {ls};
+            var data = {ls , cs };
             function sendData(){
-                data = {ls};
+                data = {ls , cs};
                 fetch('/api' , {
                     method:'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -30,6 +34,14 @@
                 if (ls == "OFF") {ls = "ON";}
                 else if (ls == "ON") {ls = "OFF";}
                 document.getElementById("light").innerText = ls;
+                sendData();
+                event.preventDefault();
+            });
+            curtainSwitch = document.getElementById("curtainSwitch");
+            curtainSwitch.addEventListener("click" , (event) => {
+                if (cs == "OPEN") {cs = "CLOSED";}
+                else if (cs == "CLOSED") {cs = "OPEN";}
+                document.getElementById("curtain").innerText = cs;
                 sendData();
                 event.preventDefault();
             });
