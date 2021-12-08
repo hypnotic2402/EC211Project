@@ -8,14 +8,17 @@
         <br><br>
         <div>Curtains : <span id="curtain">CLOSED</span></div>
         <button id = "curtainSwitch">OPEN/CLOSE</button>
+        <br><br>
+        <button id = "doorSwitch">LOCK DOOR</button>
         <script>
             var ls = "OFF";
             var cs = "CLOSED";
+            var ds = "0";
             
 
-            var data = {ls , cs };
+            var data = {ls , cs , ds};
             function sendData(){
-                data = {ls , cs};
+                data = {ls , cs , ds};
                 fetch('/api' , {
                     method:'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -42,6 +45,13 @@
                 if (cs == "OPEN") {cs = "CLOSED";}
                 else if (cs == "CLOSED") {cs = "OPEN";}
                 document.getElementById("curtain").innerText = cs;
+                sendData();
+                event.preventDefault();
+            });
+            doorSwitch = document.getElementById("doorSwitch");
+            doorSwitch.addEventListener("click" , (event)=>{
+                if (ds == "1"){ds = "0";}
+                else if (ds = "0"){ds = "1";}
                 sendData();
                 event.preventDefault();
             });
